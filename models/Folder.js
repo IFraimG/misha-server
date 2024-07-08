@@ -12,6 +12,15 @@ const FolderSchema = new mongoose.Schema({
     userID: {
         type: String,
         required: true
+    },
+    position: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    dateOfCreated: {
+        type: String,
+        required: false
     }
 })
 

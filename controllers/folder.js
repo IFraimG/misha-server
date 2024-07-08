@@ -4,10 +4,20 @@ const generateRandomString = require("../utils/generateRandomString.js")
 
 module.exports.create = async (req, res) => {
     try {
+        const formattedDate =  new Date().toLocaleDateString('ru-RU', options = {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+          })
+
+        let countDocuments = await Folder.countDocuments()
+        
         let folder = await Folder.create({ 
             title: req.body.title,
             folderID: generateRandomString(20),
-            userID: req.body.userID
+            userID: req.body.userID,
+            dateOfCreated: formattedDate,
+            position: countDocuments
         })
 
         res.send(folder) 
