@@ -3,13 +3,13 @@ const generateRandomString = require("../utils/generateRandomString.js")
 
 module.exports.create = async (req, res) => {
     try {
-       console.log("body", req.body.body["folderid"]);
+       console.log("body", req.body.body.folderid);
         //console.log("title", req.body.title, "description", req.body.description, "folderID", req.body.folderID, "userID", req.body.userID);
         let link = await Link.create({ 
             title: req.body.body.title,
             description: req.body.body.description,
             linkID: generateRandomString(20),
-            folderID: req.body.body.folderID,
+            folderID: req.body.body.folderid,
             link: req.body.body.link,
             image: req.file.filename,
         })
