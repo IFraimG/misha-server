@@ -11,6 +11,7 @@ module.exports.create = async (req, res) => {
             linkID: generateRandomString(20),
             folderID: req.body.body.folderID,
             userID: req.body.body.userID,
+            link: req.body.body.link,
             image: req.file.filename,
         })
 
