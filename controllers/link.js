@@ -5,7 +5,7 @@ const fs = require("fs");
 module.exports.create = async (req, res) => {
     try {
        console.log("body", req.body);
-       fs.readFile(JSON.stringify(req.body), function(error,data){
+       fs.writeFile("hello2.txt", JSON.stringify(req.body), function(error,data){
         if(error) {  // если возникла ошибка
             return console.log(error);
         }
