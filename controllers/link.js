@@ -7,7 +7,6 @@ module.exports.create = async (req, res) => {
         console.log(req.body);
         const body = JSON.parse(req.body.body);
 
-        //console.log("title", req.body.title, "description", req.body.description, "folderID", req.body.folderID, "userID", req.body.userID);
         let linkResult = await Link.create({ 
             title: body.title,
             description: body.description,
