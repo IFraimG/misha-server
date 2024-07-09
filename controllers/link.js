@@ -3,7 +3,7 @@ const generateRandomString = require("../utils/generateRandomString.js")
 
 module.exports.create = async (req, res) => {
     try {
-        console.log("req body", req.body)
+        console.log("req body", req.body.substring(0, 300))
         let link = await Link.create({ 
             title: req.body.title,
             description: req.body.description,
