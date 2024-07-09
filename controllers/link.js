@@ -5,6 +5,7 @@ const fs = require("fs");
 module.exports.create = async (req, res) => {
     try {
         let { title, description, folderid, link } = req.body.body
+        console.log(title, description, link, folderid);
         //console.log("title", req.body.title, "description", req.body.description, "folderID", req.body.folderID, "userID", req.body.userID);
         let linkResult = await Link.create({ 
             title: title,
