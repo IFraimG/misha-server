@@ -4,24 +4,18 @@ const fs = require("fs");
 
 module.exports.create = async (req, res) => {
     try {
-       console.log("body", req.body);
-       fs.writeFile("hello2.txt", JSON.stringify(req.body), function(error,data){
-        if(error) {  // если возникла ошибка
-            return console.log(error);
-        }
-        console.log(data.toString());   // выводим считанные данные
-    });
+        let { title, description, folderid, link } = req.body.body
         //console.log("title", req.body.title, "description", req.body.description, "folderID", req.body.folderID, "userID", req.body.userID);
-        let link = await Link.create({ 
-            title: req.body.body.title,
-            description: req.body.body.description,
+        let linkResult = await Link.create({ 
+            title: title,
+            description: description,
             linkID: generateRandomString(20),
-            folderID: req.body.body.folderid,
-            link: req.body.body.link,
+            folderID: folderid,
+            link: link,
             image: req.file.filename,
         })
 
-        res.send(link)
+        res.send(linkResult)
     } catch (err) {
         console.log(err.message);
         res.status(400).send(err.message)
