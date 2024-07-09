@@ -5,13 +5,15 @@ const fs = require("fs");
 module.exports.create = async (req, res) => {
     try {
         console.log(req.body);
+        const body = JSON.parse(req.body.body);
+
         //console.log("title", req.body.title, "description", req.body.description, "folderID", req.body.folderID, "userID", req.body.userID);
         let linkResult = await Link.create({ 
-            title: req.body.body.title,
-            description: req.body.body.description,
+            title: body.title,
+            description: body.description,
             linkID: generateRandomString(20),
-            folderID: req.body.body.folderid,
-            link: req.body.body.link,
+            folderID: body.folderid,
+            link: body.link,
             image: req.file.filename,
         })
 
