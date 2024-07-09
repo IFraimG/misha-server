@@ -11,6 +11,7 @@ module.exports.create = async (req, res) => {
             userID: req.body.userID,
             image: req.file.filename,
         })
+        console.log(req.file);
 
         res.send(link)
     } catch (err) {
