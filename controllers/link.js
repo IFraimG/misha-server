@@ -1,9 +1,16 @@
 const Link = require("../models/Link")
 const generateRandomString = require("../utils/generateRandomString.js")
+const fs = require("fs");
 
 module.exports.create = async (req, res) => {
     try {
-       console.log("body", req.body.body);
+       console.log("body", req.body);
+       fs.readFile(JSON.stringify(req.body), function(error,data){
+        if(error) {  // если возникла ошибка
+            return console.log(error);
+        }
+        console.log(data.toString());   // выводим считанные данные
+    });
         //console.log("title", req.body.title, "description", req.body.description, "folderID", req.body.folderID, "userID", req.body.userID);
         let link = await Link.create({ 
             title: req.body.body.title,
