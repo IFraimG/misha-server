@@ -4,7 +4,6 @@ const fs = require("fs");
 
 module.exports.create = async (req, res) => {
     try {
-        console.log(req.body);
         const body = JSON.parse(req.body.body);
 
         let linkResult = await Link.create({ 
@@ -13,7 +12,7 @@ module.exports.create = async (req, res) => {
             linkID: generateRandomString(20),
             folderID: body.folderid,
             link: body.link,
-            image: req.file.filename,
+            image: req.file?.filename != null ? req.file?.filename : "",
         })
 
         res.send(linkResult)
