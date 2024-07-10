@@ -80,7 +80,7 @@ module.exports.findFoldersByTitle = async (req, res) => {
         const titleRegex = new RegExp(`^${req.query.title}`, 'i')
 
         let folders = await Folder.find({ title: { $regex: titleRegex }, userID: req.query.userID }).exec()
-        
+        console.log(folders);
         if (folders == null) res.status(404).send("Not Found")
         else res.send({ folders: folders })
     } catch (error) {
