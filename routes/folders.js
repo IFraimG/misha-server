@@ -8,4 +8,7 @@ router.delete("/deleteFolderByFolderID", passport.authenticate('jwt', { session:
 router.get("/getFolderByFolderID", passport.authenticate('jwt', { session: false }), folderController.getFolderByFolderID)
 router.get("/getFoldersByUserID", passport.authenticate('jwt', { session: false }), folderController.getFoldersByUserID)
 
+router.get("/findFoldersByTitle", passport.authenticate('jwt', { session: false }), folderController.findFoldersByTitle)
+
+
 module.exports = router;

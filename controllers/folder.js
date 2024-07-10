@@ -68,9 +68,21 @@ module.exports.getFoldersByUserID = async (req, res) => {
                 })
             }
             res.send({ folders: foldersUpdate })
-
-            console.log("fff", foldersUpdate);
         }
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).send(error.message)
+    }
+}
+
+module.exports.findFoldersByTitle = async (req, res) => {
+    try {
+        const titleRegex = new RegExp(`^${req.query.title}`, 'i')
+
+        let folders = await Folder.find({ title: { $regex: titleRegex }, userID: req.query.userID }).exec()
+        
+        if (folders == null) res.status(404).send("Not Found")
+        else res.send({ folders: folders })
     } catch (error) {
         console.log(error.message);
         res.status(400).send(error.message)
