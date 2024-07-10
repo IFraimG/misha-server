@@ -21,6 +21,11 @@ const FolderSchema = new mongoose.Schema({
     dateOfCreated: {
         type: String,
         required: false
+    },
+    preview: {
+        type: String,
+        required: false,
+        default: ""
     }
 })
 
