@@ -6,9 +6,10 @@ let storage = multer.diskStorage({
     if (
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpeg" ||
-      file.mimetype === "image/gif" || file.mimetype === "image/*"
+      file.mimetype === "image/gif" ||
+      file.mimetype === "image/x-icon" ||
+      file.mimetype === "image/svg+xml"
     ) callback(null, "uploads/");
-    if (file.mimetype === "audio/mpeg") callback(null, "../audio/");
   },
   filename(req, file, callback) {
     let date = moment().format("DDMMYYYY-HHmmss_SSS");
@@ -17,8 +18,11 @@ let storage = multer.diskStorage({
 });
 
 let fileFilter = (req, file, callback) => {
-  file.mimetype === "image/png" || file.mimetype === "image/jpeg" || 
-  file.mimetype === "image/gif" || file.mimetype === "audio/mpeg" || file.mimetype === "image/*"  ? 
+  file.mimetype === "image/png" ||
+  file.mimetype === "image/jpeg" ||
+  file.mimetype === "image/gif" ||
+  file.mimetype === "image/x-icon" ||
+  file.mimetype === "image/svg+xml"  ? 
     callback(null, true) : callback(null, false)
 }
 
