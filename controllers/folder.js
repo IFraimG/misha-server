@@ -92,7 +92,7 @@ module.exports.findFoldersByTitle = async (req, res) => {
                     userID: folders[i].userID,
                     dateOfCreated: folders[i].dateOfCreated,
                     position: folders[i].position,
-                    preview: link != null ? link[0].image : ""
+                    preview: link != null && link?.length && link[0]?.image != null > 0 ? link[0].image : ""
                 })
             }
             res.send({ folders: foldersUpdate })
