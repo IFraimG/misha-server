@@ -52,10 +52,11 @@ module.exports.getFolderByFolderID = async (req, res) => {
 module.exports.getFoldersByUserID = async (req, res) => {
     try {
         let result = await Folder.find({userID: req.query.userID}).exec()
-        let foldersUpdate = result.map(async (folder) => {
+        let foldersUpdate = []
+        result.map(async (folder) => {
             let link = await Link.find({ folderID: folder.folderID }).limit(1)
             console.log("link", link);
-            return { ...folder, preview: link != null ? link[0].image : "" }
+            foldersUpdate.push({ ...folder, preview: link != null ? link[0].image : "" })
         })
 
         console.log("fff", foldersUpdate);
