@@ -57,14 +57,15 @@ module.exports.getFoldersByUserID = async (req, res) => {
         if (folders == null) res.status(404).send("Not Found")
         else {
             for (let i = 0; i < folders.length; i++) {
-                let link = await Link.find({ folderID: folders[i].folderID }).limit(1)
+                let link = await Link.find({ folderID: folders[i].folderID }).exec()
                 foldersUpdate.push({
                     title: folders[i].title,
                     folderID: folders[i].folderID,
                     userID: folders[i].userID,
                     dateOfCreated: folders[i].dateOfCreated,
                     position: folders[i].position,
-                    preview: link != null && link?.length && link[0]?.image != null > 0 ? link[0].image : ""
+                    preview: link != null && link?.length && link[0]?.image != null > 0 ? link[0].image : "",
+                    countOfLinks: link != null ? link.length : 0
                 })
             }
             res.send({ folders: foldersUpdate })
