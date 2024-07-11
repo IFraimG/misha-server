@@ -9,6 +9,7 @@ module.exports.login = async (req, res) => {
   if (!user) {
     return res.status(404).send({ token: "" })
   } else {
+    console.log("res", req.body);
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) return res.status(400).send({ token: "" })
     else {
