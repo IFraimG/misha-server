@@ -24,7 +24,7 @@ module.exports.login = async (req, res) => {
 
 module.exports.signup = async (req, res, next) => {
   const isUserWithPhone = await User.findOne({ phone: req.body.phone }).exec()
-  console.log("res", req.body);
+  console.log("res", req);
   if (isUserWithPhone != null) return res.status(403).send({ message: "Пользователь с такой почтой уже существует" })
 
   const salt = await bcrypt.genSalt(10)
