@@ -79,8 +79,11 @@ module.exports.getFoldersByUserID = async (req, res) => {
 module.exports.findFoldersByTitle = async (req, res) => {
     try {
         const titleRegex = new RegExp(`^${req.query.title}`, 'i')
-
-        let folders = await Folder.find({ title: { $regex: titleRegex }, userID: req.query.userID }).exec()
+        let folders = []
+        
+        if (req.query.title.length > 0) folders = await Folder.find({ title: { $regex: titleRegex }, userID: req.query.userID }).exec()
+        else folders = await Folder.find({ userID: req.query.userID }).exec()
+            
         let foldersUpdate = []
         
         if (folders == null) res.status(404).send("Not Found")
